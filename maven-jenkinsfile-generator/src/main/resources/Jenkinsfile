@@ -1,0 +1,92 @@
+/**
+* Author: Marcus
+* Version: 1.0.0
+* Description:jenkins DevOps部署脚本模板
+* Date：2020-12-17
+*/
+pipeline {
+agent any
+stages {
+stage('env init') {
+steps {
+script {
+}
+}
+}
+stage('maven package') {
+steps {
+sh 'mvn clean package -Dmaven.test.skip=true'
+archiveArtifacts artifacts: "**/target/${appName}", fingerprint: true
+}
+}
+
+
+
+
+
+stage('success') {
+steps {
+echo 'success build'
+}
+}
+
+}
+post {
+success {
+dingtalk(
+robot: "${dingdingId}",
+type: 'LINK',
+atAll: false,
+title: "成功",
+messageUrl: "${env.BUILD_URL}",
+picUrl: 'http://sortserverfat.yto56.com.cn:8080/success.png',
+text: ["项目：${env.appName}\n分支：${env.BRANCH_NAME} \n构建码：${env.BUILD_NUMBER} \n结果：成功"]
+
+)
+}
+failure {
+dingtalk(
+robot: "${dingdingId}",
+type: 'LINK',
+atAll: false,
+title: "失败",
+messageUrl: "${env.BUILD_URL}",
+picUrl: 'http://sortserverfat.yto56.com.cn:8080/error.png',
+text: ["项目：${env.appName}\n分支：${env.BRANCH_NAME}\n构建码：${env.BUILD_NUMBER}"]
+)
+}
+}
+tools {
+maven 'maven3.6.3'
+}
+environment {
+//钉钉ID,需要在jenkins上配置
+dingdingId = "FreeMarker template error (DEBUG mode; use RETHROW in production!):
+The following has evaluated to null or missing:
+==> dingdingId  [in template "JenkinsfileTemplate.ftl" at line 156, column 17]
+
+----
+Tip: If the failing expression is known to legally refer to something that's sometimes null or missing, either specify a default value like myOptionalVar!myDefault, or use <#if myOptionalVar??>when-present<#else>when-missing</#if>. (These only cover the last step of the expression; to cover the whole expression, use parenthesis: (myOptionalVar.foo)!myDefault, (myOptionalVar.foo)??
+----
+
+----
+FTL stack trace ("~" means nesting-related):
+	- Failed at: #{dingdingId}  [in template "JenkinsfileTemplate.ftl" at line 156, column 15]
+----
+
+Java stack trace (for programmers):
+----
+freemarker.core.InvalidReferenceException: [... Exception message was already printed; see it above ...]
+	at freemarker.core.InvalidReferenceException.getInstance(InvalidReferenceException.java:134)
+	at freemarker.core.UnexpectedTypeException.newDescriptionBuilder(UnexpectedTypeException.java:85)
+	at freemarker.core.UnexpectedTypeException.<init>(UnexpectedTypeException.java:48)
+	at freemarker.core.NonNumericalException.<init>(NonNumericalException.java:47)
+	at freemarker.core.Expression.modelToNumber(Expression.java:158)
+	at freemarker.core.Expression.evalToNumber(Expression.java:151)
+	at freemarker.core.NumericalOutput.calculateInterpolatedStringOrMarkup(NumericalOutput.java:78)
+	at freemarker.core.NumericalOutput.accept(NumericalOutput.java:66)
+	at freemarker.core.Environment.visit(Environment.java:334)
+	at freemarker.core.Environment.visit(Environment.java:340)
+	at freemarker.core.Environment.process(Environment.java:313)
+	at freemarker.template.Template.process(Template.java:383)
+	at org.jarvis.jenkins.mojo.freemarker.GeneratorEngine.main(GeneratorEngine.java:41)

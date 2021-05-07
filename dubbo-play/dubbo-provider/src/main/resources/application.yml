@@ -1,0 +1,32 @@
+dubbo:
+  application:
+    name: dubbo-provider
+    qos-enable: true
+    qos-accept-foreign-ip: false
+    qos-port: 9527
+  registry:
+    address: 127.0.0.1:2181
+    protocol: zookeeper
+    check: false
+  #  registry:
+  #    address: 224.5.6.7:1234
+  #    protocol: multicast
+  #    check: false
+  #  monitor:
+  #    protocol: zookeeper
+  #    address: 127.0.0.1:2181
+  monitor:
+    protocol: registry
+  consumer:
+    check: false
+    timeout: 3000
+  protocol:
+    name: dubbo
+    port: 20880
+server:
+  port: 9092
+
+demo:
+  service:
+    version: 1.0.0
+

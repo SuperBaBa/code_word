@@ -8,7 +8,7 @@
 
     <aop:aspectj-autoproxy/>
 
-    <bean id="testBeanX" class="org.jarvis.model.TestBean">
+    <bean id="testBeanX" class="org.jarvis.consumer.model.TestBean">
         <constructor-arg name="contextName" value="use_context"/>
     </bean>
 

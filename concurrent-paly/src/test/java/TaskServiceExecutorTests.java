@@ -1,7 +1,7 @@
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.jarvis.concurrent.ConcurrentApplication;
-import org.jarvis.concurrent.spring.dto.Course;
-import org.jarvis.concurrent.spring.service.TaskService;
+import org.jarvis.consumer.concurrent.ConcurrentApplication;
+import org.jarvis.consumer.concurrent.spring.dto.Course;
+import org.jarvis.consumer.concurrent.spring.service.TaskService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -21,8 +21,8 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executor;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
-import static org.hamcrest.MatcherAssert.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
 

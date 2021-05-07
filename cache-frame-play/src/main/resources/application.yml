@@ -1,0 +1,40 @@
+server:
+  port: 8081
+spring:
+  datasource:
+    hikari:
+      username: iron_man
+      password:
+      jdbc-url: jdbc:h2:mem:jarvis
+  h2:
+    console:
+      enabled: true
+      settings:
+        web-allow-others: true
+      path: /h2
+  jpa:
+    properties:
+      hibernate:
+    #        format_sql: true
+    #        show_sql: true
+    hibernate:
+      ddl-auto: update
+jetcache:
+  statIntervalMinutes: 1
+  areaInCacheName: false
+  local:
+    default:
+      type: linkedhashmap
+      keyConvertor: fastjson
+  remote:
+    default:
+      type: redis
+      keyConvertor: fastjson
+      valueEncoder: java
+      valueDecoder: java
+      poolConfig:
+        minIdle: 5
+        maxIdle: 20
+        maxTotal: 50
+      host: 127.0.0.1
+      port: 6379

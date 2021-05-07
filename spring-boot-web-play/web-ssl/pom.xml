@@ -20,6 +20,7 @@
         </dependency>
     </dependencies>
     <build>
+        <finalName>web-ssl-release</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -28,6 +29,39 @@
                     <execution>
                         <goals>
                             <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.jarvis.jenkins</groupId>
+                <artifactId>maven-jenkinsfile-generator</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+                <configuration>
+                    <deployInfo>
+                        <sitBranch>feature/mat-1126</sitBranch>
+                        <sitCredentialsId>yto-mat-interfacex182-sit</sitCredentialsId>
+                        <sitSpringProfilesActive>dev</sitSpringProfilesActive>
+                        <sitIpList>
+                            <machine>
+                                <hostName>10.130.36.182</hostName>
+                                <username>root</username>
+                                <password>6Zn88se6A9Ws</password>
+                            </machine>
+                            <machine>
+                                <hostName>10.130.222.111</hostName>
+                                <username>admin</username>
+                                <password>admin</password>
+                            </machine>
+                        </sitIpList>
+                    </deployInfo>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>
+                                generator-JenkinsFile
+                            </goal>
                         </goals>
                     </execution>
                 </executions>

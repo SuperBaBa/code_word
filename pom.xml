@@ -24,6 +24,10 @@
         <module>data-transfer-object-common</module>
         <!--大众点评监控平台central-application-tracking 集成-->
         <module>central-application-tracking-play</module>
+        <module>dubbo-play</module>
+        <module>my-rpc</module>
+        <module>pp-rpc-common</module>
+        <module>cache-frame-play</module>
     </modules>
     <!--版本资源管理-->
     <properties>
@@ -225,6 +229,5 @@
                 <enabled>true</enabled>
             </snapshots>
         </repository>
-
     </repositories>
 </project>

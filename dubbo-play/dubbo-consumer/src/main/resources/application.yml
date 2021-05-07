@@ -1,0 +1,30 @@
+dubbo:
+  application:
+    name: dubbo-consumer
+  registry:
+    address: 127.0.0.1:2181
+    protocol: zookeeper
+    check: false
+  #  registry:
+  #    address: 224.5.6.7:1234
+  #    protocol: multicast
+  #    check: false
+  monitor:
+    protocol: registry
+  #  monitor:
+  #    protocol: zookeeper
+  #    address: 127.0.0.1:2181
+  consumer:
+    check: false
+    timeout: 3000
+    group: dubbo
+  protocol:
+    name: dubbo
+
+server:
+  port: 9091
+
+demo:
+  service:
+    version: 1.0.0
+
