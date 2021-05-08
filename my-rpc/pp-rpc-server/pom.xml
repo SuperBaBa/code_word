@@ -9,9 +9,10 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>pp-rpc-servcer</artifactId>
+    <artifactId>pp-rpc-server</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
+    <name>PP PRC Server</name>
     <description>将服务注册到注册中心</description>
     <dependencies>
         <!--公共实体-->

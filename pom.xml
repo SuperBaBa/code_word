@@ -9,25 +9,9 @@
     <packaging>pom</packaging>
     <version>1.0</version>
     <modules>
-        <!--spring-data项目练习，使用了jpa的java持久化API-->
-        <module>spring-boot-data-play</module>
-        <module>spring-cloud-alibaba-play</module>
-        <module>spring-cloud-netfix-play</module>
-        <module>logback-play-spring-boot-starter</module>
-        <module>kafka-play</module>
-        <module>java8-play</module>
-        <module>elkalert-play</module>
-        <module>elasticsearch-play</module>
-        <module>concurrent-paly</module>
-        <module>rocketmq-play</module>
-        <module>rocksdb-play</module>
-        <module>data-transfer-object-common</module>
-        <!--大众点评监控平台central-application-tracking 集成-->
-        <module>central-application-tracking-play</module>
-        <module>dubbo-play</module>
-        <module>my-rpc</module>
-        <module>cache-frame-play</module>
+        <module>dynamic-datasource</module>
     </modules>
+    <name>Spring Practice BOM</name>
     <!--版本资源管理-->
     <properties>
         <!--docker打包镜像前缀，仓库名和命名空间-->
@@ -45,6 +29,7 @@
         <name>Jarvis Corporation</name>
         <url>https://www.cecilia-marcus.cn/</url>
     </organization>
+
     <!--整个pom只做版本管理-->
     <dependencyManagement>
         <dependencies>
@@ -103,7 +88,7 @@
             <!--springboot依赖-->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-parent</artifactId>
+                <artifactId>spring-boot-dependencies</artifactId>
                 <version>${spring-boot.version}</version>
                 <type>pom</type>
                 <scope>import</scope>

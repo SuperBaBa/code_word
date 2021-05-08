@@ -14,6 +14,10 @@
         <rocketmq.client.version>4.6.1</rocketmq.client.version>
     </properties>
     <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/org.apache.rocketmq/rocketmq-client -->
         <dependency>
             <groupId>org.apache.rocketmq</groupId>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+    <contextName>logback-spring-demo-dev</contextName>
+    <springProperty scope="context" name="log.path" source="log.location"/>
+    <springProperty scope="context" name="projectname" source="spring.application.name"/>
+    <springProperty scope="context" name="kafka.broker.servers" source="bootstrap.servers"/>
+    <!--日志输出格式化-->
+    <property name="pattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg %n"/>
+    <!--日志输出格式化，且带颜色-->
+    <property name="pattern-color"
+              value="%red([%d{yyyy-MM-dd HH:mm:ss.SSS}]) %cyan(${LOG_LEVEL_PATTERN:-%p}) ${PID:- } %magenta(${projectname}) [%t] %green([%logger]):%highlight(%m%n)"/>
+    <property name="LOG_HOME" value="${log.path}"/>
+    <!-- show parameters for hibernate sql 专为 Hibernate 定制 -->
+    <logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="TRACE"/>
+    <logger name="org.hibernate.type.descriptor.sql.BasicExtractor" level="DEBUG"/>
+    <logger name="org.hibernate.SQL" level="DEBUG"/>
+    <logger name="org.hibernate.engine.QueryParameters" level="DEBUG"/>
+    <logger name="org.hibernate.engine.query.HQLQueryPlan" level="DEBUG"/>
+
+    <!--myibatis log configure-->
+    <logger name="com.apache.ibatis" level="TRACE"/>
+    <logger name="java.sql.Connection" level="DEBUG"/>
+    <logger name="java.sql.Statement" level="DEBUG"/>
+    <logger name="java.sql.PreparedStatement" level="DEBUG"/>
+
+    <!-- 控制台输出 -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${pattern}</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 控制台输出-带颜色 -->
+    <appender name="CONSOLE-WITH-COLOR" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${pattern-color}</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 文件输出 -->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>log/${projectname}/logback.log</file>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_HOME}/${projectname}.%d.%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>100MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${pattern}</pattern>
+        </encoder>
+    </appender>
+
+    <!--日志输出kafka-->
+    <appender name="kafkaAppender" class="com.github.danielwegener.logback.kafka.KafkaAppender">
+        <encoder charset="UTF-8" class="net.logstash.logback.encoder.LogstashEncoder">
+            <fieldNames class="net.logstash.logback.fieldnames.ShortenedFieldNames">
+                <timestamp>logAppenderTime</timestamp>
+                <levelValue>[ignore]</levelValue>
+                <version>[ignore]</version>
+                <level>logLevel</level>
+                <logger>packageName</logger>
+                <thread>threadName</thread>
+            </fieldNames>
+            <timestampPattern>yyyy-MM-dd HH:mm:ss.SSS</timestampPattern>
+            <timeZone>GMT+0:00</timeZone>
+            <customFields>{"appId":"${projectname}","hostName":"${HOSTNAME}"}</customFields>
+            <enableContextMap>true</enableContextMap>
+            <includeMdc>true</includeMdc>
+            <includeContext>false</includeContext>
+            <throwableConverter class="net.logstash.logback.stacktrace.ShortenedThrowableConverter">
+                <maxDepthPerThrowable>30</maxDepthPerThrowable>
+                <rootCauseFirst>true</rootCauseFirst>
+            </throwableConverter>
+        </encoder>
+        <topic>kafka-elk-topic</topic>
+        <!--key生成策略-->
+        <keyingStrategy class="com.github.danielwegener.logback.kafka.keying.NoKeyKeyingStrategy"/>
+        <!--发送策略-->
+        <deliveryStrategy class="com.github.danielwegener.logback.kafka.delivery.AsynchronousDeliveryStrategy"/>
+        <producerConfig>bootstrap.servers=${kafka.broker.servers}</producerConfig>
+        <producerConfig>acks=0</producerConfig>
+        <appender-ref ref="CONSOLE"/>
+    </appender>
+
+    <appender name="logstashASYNC" class="ch.qos.logback.classic.AsyncAppender">
+        <!--        <discardingThreshold>0</discardingThreshold>-->
+        <!--        <queueSize>4096</queueSize>-->
+        <!--        <includeCallerData>true</includeCallerData>-->
+        <appender-ref ref="kafkaAppender"/>
+    </appender>
+
+
+    <root level="INFO">
+        <appender-ref ref="CONSOLE-WITH-COLOR"/>
+    </root>
+
+    <logger name="com.example.logbackdemo.IndexAction" level="info" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+    </logger>
+
+</configuration>

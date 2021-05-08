@@ -6,13 +6,7 @@
     <artifactId>my-rpc</artifactId>
     <version>1.0</version>
     <packaging>pom</packaging>
-    <!--包含以下四个模块-->
-    <modules>
-        <module>pp-rpc-server</module>
-        <module>pp-rpc-client</module>
-        <module>simple-rpc</module>
-        <module>pp-rpc-common</module>
-    </modules>
+    <name>My RPC Framework BOM</name>
     <modelVersion>4.0.0</modelVersion>
     <description>造轮子自己写一个RPC(Remote Procedure Call)框架</description>
 
