@@ -1,4 +1,4 @@
-package org.jarvis.consumer.handler;
+package org.jarvis.datasource.handler;
 
 import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;

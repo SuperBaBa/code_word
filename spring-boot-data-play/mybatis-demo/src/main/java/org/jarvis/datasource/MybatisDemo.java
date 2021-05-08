@@ -1,8 +1,8 @@
-package org.jarvis.consumer;
+package org.jarvis.datasource;
 
 import lombok.extern.slf4j.Slf4j;
-import org.jarvis.consumer.mapper.CoffeeMapper;
-import org.jarvis.entity.Coffee;
+import org.jarvis.datasource.entity.Coffee;
+import org.jarvis.datasource.mapper.CoffeeMapper;
 import org.joda.money.CurrencyUnit;
 import org.joda.money.Money;
 import org.mybatis.spring.annotation.MapperScan;

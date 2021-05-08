@@ -91,7 +91,4 @@ public class DataSourceConfiguration {
         }
         DatabasePopulatorUtils.execute(populator, dataSource);
     }
-
-
-
 }

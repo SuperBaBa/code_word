@@ -1,4 +1,4 @@
-package org.jarvis.entity;
+package org.jarvis.datasource.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
