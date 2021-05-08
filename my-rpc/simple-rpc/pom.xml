@@ -11,6 +11,7 @@
 
     <artifactId>simple-rpc</artifactId>
     <packaging>pom</packaging>
+    <name>simple-rpc</name>
     <version>0.0.1-SNAPSHOT</version>
     <modules>
         <module>sample-client</module>

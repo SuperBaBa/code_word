@@ -17,7 +17,6 @@
         <module>reactive-programming-demo</module>
         <module>multi-datasource-demo</module>
         <module>jpa-demo</module>
-        <module>database-error-code-demo</module>
         <module>datasource-demo</module>
         <module>jdbc-template-demo</module>
         <module>mango-demo</module>

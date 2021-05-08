@@ -1,7 +1,7 @@
 package org.jarvis.consumer.mapper;
 
 import org.apache.ibatis.annotations.*;
-import org.jarvis.web.entity.Coffee;
+import org.jarvis.entity.Coffee;
 
 @Mapper
 public interface CoffeeMapper {

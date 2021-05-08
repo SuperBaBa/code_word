@@ -26,7 +26,6 @@
         <module>central-application-tracking-play</module>
         <module>dubbo-play</module>
         <module>my-rpc</module>
-        <module>pp-rpc-common</module>
         <module>cache-frame-play</module>
     </modules>
     <!--版本资源管理-->

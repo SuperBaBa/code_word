@@ -5,15 +5,16 @@
     <groupId>org.jarvis.pprpc</groupId>
     <artifactId>my-rpc</artifactId>
     <version>1.0</version>
+    <packaging>pom</packaging>
+    <!--包含以下四个模块-->
     <modules>
-        <module>pp-rpc-servcer</module>
+        <module>pp-rpc-server</module>
         <module>pp-rpc-client</module>
         <module>simple-rpc</module>
+        <module>pp-rpc-common</module>
     </modules>
     <modelVersion>4.0.0</modelVersion>
-    <packaging>pom</packaging>
     <description>造轮子自己写一个RPC(Remote Procedure Call)框架</description>
-    <!--包含以下四个模块-->
 
 
     <properties>

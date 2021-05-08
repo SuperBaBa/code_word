@@ -1,6 +1,6 @@
 import lombok.extern.slf4j.Slf4j;
-import org.jarvis.consumer.DataBaseErrorCode;
-import org.jarvis.consumer.exception.CustomizeDuplicatedKeyException;
+import org.jarvis.datasource.DataSourceDemoApplication;
+import org.jarvis.datasource.exception.CustomizeDuplicatedKeyException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ import java.util.Map;
  **/
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@ContextConfiguration(classes = DataBaseErrorCode.class)
+@ContextConfiguration(classes = DataSourceDemoApplication .class)
 @Slf4j
 public class ErrorCodeDemoApplicationTests {
     @Autowired
