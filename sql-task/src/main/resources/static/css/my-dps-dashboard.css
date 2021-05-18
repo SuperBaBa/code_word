@@ -1,0 +1,58 @@
+#myChart {
+    /*display: inline-block;*/
+    /*width: 400px;*/
+    /*height: 200px;*/
+    border: 1px solid lightgray;
+    border-right: none;
+    vertical-align: middle;
+    margin: 0 auto;
+    height: 410px;
+    min-height: 100px;
+}
+
+.container {
+    display: inline-block;
+    width: 80px;
+    height: 200px;
+    border: 1px solid lightgray;
+    border-left: none;
+    margin: -5px;
+    vertical-align: middle;
+
+}
+
+.buttons {
+    display: table-cell;
+    width: inherit;
+    height: inherit;
+    vertical-align: middle;
+}
+
+.button {
+    font-size: 0.75em;
+    padding: .3em;
+    background-color: rgba(0, 0, 255, .5);
+    border: 1px solid transparent;
+    border-radius: .5em;
+    box-shadow: 1px 1px 1px black;
+    text-align: center;
+    margin: 1em;
+}
+
+.button:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 255, 1);
+    color: white;
+}
+
+.disabled {
+    background-color: lightgray;
+    color: lavender;
+    box-shadow: 1px 1px 1px lightslategray;
+}
+
+.disabled:hover {
+    cursor: not-allowed;
+    background-color: lightgray;
+    color: lavender;
+}
