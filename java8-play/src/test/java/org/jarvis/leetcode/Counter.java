@@ -20,12 +20,12 @@ public class Counter {
         System.out.println(Thread.currentThread().getName() + "--" + th.get());
     }
     // 计数方法SUM(1:10)=55
-   /* public  void count() {
-        for(int i=0;i<=10;i++) {
-            x = x+i;
-        }
-        System.out.println(Thread.currentThread().getName()+"--"+x);
-    }*/
+//   public  void count() {
+//        for(int i=0;i<=10;i++) {
+//            x = x+i;
+//        }
+//        System.out.println(Thread.currentThread().getName()+"--"+x);
+//    }
 
     public static void main(String[] args) {
         // 定义线程实现接口

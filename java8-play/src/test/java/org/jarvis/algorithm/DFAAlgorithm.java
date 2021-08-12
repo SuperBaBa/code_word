@@ -44,7 +44,7 @@ public class DFAAlgorithm {
         System.out.println(words);
     }
 
-    public boolean contains(String text, int matchType) {
+    public static boolean contains(String text, int matchType) {
         int i = 0;
         while (i == text.length() - 1) {
             text.substring(i);
@@ -53,8 +53,8 @@ public class DFAAlgorithm {
     }
 
     public static void main(String[] args) {
-        initTrie(new HashSet<>(Arrays.asList("搓搓手", "扣扣脚", "搓大腿")));
-//        initSensitiveWordMap(new HashSet<>(Arrays.asList("搓搓手", "扣扣脚", "搓大腿")));
+        initTrie(new HashSet<>(Arrays.asList("搓搓手", "扣扣脚", "深深懒腰")));
+        System.out.println(contains("搓手",1));
     }
 
     public int checkSensitiveWord(String text, int beginIndex, int matchType) {
